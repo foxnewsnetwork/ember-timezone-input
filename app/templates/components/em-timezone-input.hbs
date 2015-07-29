@@ -1,12 +1,3 @@
-<div class="map-label">
-  <select class={{selectClass}} {{action "change" on="change"}}>
-    {{#each zones as |zone|}}
-      <option value={{zone.value}} selected={{eq zone selectedZone}}>
-        {{zone.presentation}}
-      </option>
-    {{/each}}
-  </select>
-</div>
 <div class="map-wrap" style={{wrapStyles}}>
   <div class="map-inset" {{action "click"}} style={{insetStyles}}>
     <div class="map-axis-x" style={{axisXStyle}}></div>
@@ -17,4 +8,13 @@
       </span>
     {{/each}}
   </div>
+</div>
+<div class="map-label">
+  <select class={{selectClass}} {{action "change" on="change"}}>
+    {{#each zones as |zone|}}
+      <option value={{zone.value}} selected={{eq zone selectedZone}}>
+        {{zone.presentation}}
+      </option>
+    {{/each}}
+  </select>
 </div>
