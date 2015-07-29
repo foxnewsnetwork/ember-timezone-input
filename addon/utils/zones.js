@@ -28,13 +28,14 @@ const Zone = Ember.Object.extend({
   zoneStyle: esc("zoneStyleRaw"),
   distSqr (px, py) {
     var dx = this.get("x") - px,
-      dy = this.get("y") - py
+      dy = this.get("y") - py;
     return dx * dx + dy * dy; 
   }
 });
 
 var zones = Ember.A();
-for (let name in data.zones) {
+
+for (var name in data.zones) {
   zones.pushObject(Zone.create({
     zone: data.zones[name]
   }));

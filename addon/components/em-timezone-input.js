@@ -4,7 +4,6 @@ import {zonesSortedByDistance} from '../utils/zones';
 
 const fmt = CPM.Macros.fmt;
 const esc = CPM.Macros.htmlEscape;
-const alias = Ember.computed.alias;
 const product = CPM.Macros.product;
 
 export default Ember.Component.extend({
