@@ -1,0 +1,1 @@
+export { default } from 'ember-timezone-input/components/em-timezone-input';
