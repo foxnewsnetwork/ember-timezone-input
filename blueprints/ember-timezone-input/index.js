@@ -12,9 +12,9 @@ module.exports = {
 
   afterInstall: function(options) {
     return RSVP.all([
-      this.addAddonToProject('ember-moment', '^3.1.0'),
-      this.addAddonToProject('ember-truth-helpers', "^1.0.0"),
-      this.addAddonToProject('ember-cpm', "^1.3.4")
+      this.addAddonToProject('ember-moment', "4.1.0"),
+      this.addAddonToProject('ember-truth-helpers', "1.2.0"),
+      this.addAddonToProject('ember-cpm', "^2.1.2")
     ]);
   }
 };

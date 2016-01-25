@@ -2,6 +2,7 @@ import Ember from 'ember';
 import CPM from 'ember-cpm';
 import data from '../data/zones';
 import moment from 'moment';
+import fmtc from './fmtc';
 
 const product = CPM.Macros.product;
 const quotient = CPM.Macros.quotient;
@@ -10,7 +11,7 @@ const sum = CPM.Macros.sum;
 const join = CPM.Macros.join;
 const alias = Ember.computed.alias;
 const esc = CPM.Macros.htmlEscape;
-const fmt = CPM.Macros.fmt;
+
 
 const Zone = Ember.Object.extend({
   value: alias("zone.name"),
@@ -24,7 +25,7 @@ const Zone = Ember.Object.extend({
   yp: product("y", 100),
   x: quotient(sum("zone.long", 180), 360),
   y: quotient(difference(90, "zone.lat"), 180),
-  zoneStyleRaw: fmt("xp", "yp", "left: %@%; top: %@%;"),
+  zoneStyleRaw: fmtc("xp", "yp", "left: %@%; top: %@%;"),
   zoneStyle: esc("zoneStyleRaw"),
   distSqr (px, py) {
     var dx = this.get("x") - px,
@@ -35,7 +36,7 @@ const Zone = Ember.Object.extend({
 
 var zones = Ember.A();
 
-for (var name in data.zones) {
+for (let name in data.zones) {
   zones.pushObject(Zone.create({
     zone: data.zones[name]
   }));

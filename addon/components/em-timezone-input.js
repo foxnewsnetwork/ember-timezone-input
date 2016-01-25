@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import CPM from 'ember-cpm';
 import {zonesSortedByDistance} from '../utils/zones';
+import fmtc from '../utils/fmtc';
 
-const fmt = CPM.Macros.fmt;
 const esc = CPM.Macros.htmlEscape;
 const product = CPM.Macros.product;
 
@@ -12,17 +12,17 @@ export default Ember.Component.extend({
   zones: zonesSortedByDistance,
   wrapImg: "images/timezone/bg.png",
   wrapColor: "#4e7cad",
-  wrapStylesRaw: fmt("wrapColor", "wrapImg", "background: %@ url(%@); position: relative;"),
+  wrapStylesRaw: fmtc("wrapColor", "wrapImg", "background: %@ url(%@); position: relative;"),
   wrapStyles: esc("wrapStylesRaw"),
   insetImg: "images/timezone/world.png",
-  insetStylesRaw: fmt("insetImg", "background: url(%@) 50% 50%; background-size: cover; padding-bottom: 50%;"),
+  insetStylesRaw: fmtc("insetImg", "background: url(%@) 50% 50%; background-size: cover; padding-bottom: 50%;"),
   insetStyles: esc("insetStylesRaw"),
   selectClass: "ember-timezone-select",
   axisXTop: product("selectedZone.x", 100),
   axisYLeft: product("selectedZone.y", 100),
-  axisXStyleRaw: fmt("axisXTop", "wrapColor", "left: %@%;"),
+  axisXStyleRaw: fmtc("axisXTop", "wrapColor", "left: %@%;"),
   axisXStyle: esc("axisXStyleRaw"),
-  axisYStyleRaw: fmt("axisYLeft", "wrapColor", "top: %@%;"),
+  axisYStyleRaw: fmtc("axisYLeft", "wrapColor", "top: %@%;"),
   axisYStyle: esc("axisYStyleRaw"),
   value: Ember.computed("selectedZone", {
     get () {
