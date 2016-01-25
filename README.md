@@ -28,7 +28,7 @@ You'll need to either import the scss file into your app like so:
 ```
 Or configure your setup to import the dummy css file:
 ```javascript
-app.import("node_modules/ember-timezone-input/tests/dummy/app/styles/dummy.css");
+app.import("vendor/ember-timezone-input.css");
 ```
 To properly style the thing (don't do both).
 
