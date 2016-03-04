@@ -1,6 +1,6 @@
 {
   "name": "ember-timezone-input",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "momentjs-friendly time-zone select input with map of world attached",
   "directories": {
     "doc": "doc",
