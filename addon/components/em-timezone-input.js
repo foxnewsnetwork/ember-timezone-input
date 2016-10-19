@@ -1,10 +1,13 @@
 import Ember from 'ember';
-import CPM from 'ember-cpm';
 import {zonesSortedByDistance} from '../utils/zones';
 import fmtc from '../utils/fmtc';
 
-const esc = CPM.Macros.htmlEscape;
-const product = CPM.Macros.product;
+const esc = (key) => Ember.computed(key, {
+  get() { return Ember.String.htmlSafe(this.get(key)); }
+}).readOnly();
+const product = (compKey, constVal) => Ember.computed(compKey, {
+  get() { return this.get(compKey) * constVal; }
+}).readOnly();
 
 export default Ember.Component.extend({
   mapClickMode: true,
