@@ -1,5 +1,9 @@
 # Ember-timezone-input
 
+Checkout demo at:
+
+https://foxnewsnetwork.github.io/ember-timezone-input
+
 >warning: it works, but it's pretty alpha and not super-well tested, use at your own peril!
 
 ```handlebars
