@@ -4,10 +4,10 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'dummy',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
-    contentSecurityPolicy: { 
-      'connect-src': "'self' ws://localhost:4000 https://*.amazonaws.com http://*.simwms.com",
+    contentSecurityPolicy: {
+      'connect-src': "'self' ws://localhost:4000",
       "img-src": "*",
       "media-src": "'self' http://localhost:*",
       "font-src": "*",
@@ -38,7 +38,7 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
+    ENV.rootURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
@@ -50,7 +50,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.locationType = 'hash';
-    ENV.baseURL = '/ember-timezone-input/';
+    ENV.rootURL = '/ember-timezone-input/';
 
   }
 

@@ -3,11 +3,19 @@
 
 module.exports = {
   name: 'ember-timezone-input',
-  included: function(app, parentAddon) {
-    this._super.included(app);
-    var target = (parentAddon || app);
+  included(app) {
+    this._super.included.apply(this, arguments);
 
-    target.import("./vendor/timezone/bg.png", { destDir: "images/timezone" });
-    target.import("./vendor/timezone/world.png", { destDir: "images/timezone" });
+    // see: https://github.com/ember-cli/ember-cli/issues/3718
+    while (typeof app.import !== 'function' && app.app) {
+      app = app.app;
+    }
+
+    this.app = app;
+
+    const vendor = this.treePaths.vendor;
+
+    app.import(vendor + "/timezone/bg.png", { destDir: "images/timezone" });
+    app.import(vendor + "/timezone/world.png", { destDir: "images/timezone" });
   }
 };

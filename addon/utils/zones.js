@@ -1,40 +1,35 @@
 import Ember from 'ember';
-import CPM from 'ember-cpm';
 import data from '../data/zones';
 import moment from 'moment';
 import fmtc from './fmtc';
+import { join, product, quotient, sum, difference2, esc } from './computed';
 
-const product = CPM.Macros.product;
-const quotient = CPM.Macros.quotient;
-const difference = CPM.Macros.difference;
-const sum = CPM.Macros.sum;
-const join = CPM.Macros.join;
-const alias = Ember.computed.alias;
-const esc = CPM.Macros.htmlEscape;
-
+const { computed, computed: { readOnly } } = Ember;
 
 const Zone = Ember.Object.extend({
-  value: alias("zone.name"),
+  value: readOnly("zone.name"),
   presentation: join("value", "currentTime", " - "),
-  currentTime: Ember.computed("value", {
+  currentTime: computed("value", {
     get () {
       return moment().tz(this.get("value")).format("hh:mm z");
     }
-  }).volatile(),
+  }).readOnly().volatile(),
   xp: product("x", 100),
   yp: product("y", 100),
-  x: quotient(sum("zone.long", 180), 360),
-  y: quotient(difference(90, "zone.lat"), 180),
+  greaterLongitude: sum("zone.long", 180),
+  lesserLatitude: difference2(90, "zone.lat"),
+  x: quotient('greaterLongitude', 360),
+  y: quotient('lesserLatitude', 180),
   zoneStyleRaw: fmtc("xp", "yp", "left: %@%; top: %@%;"),
   zoneStyle: esc("zoneStyleRaw"),
   distSqr (px, py) {
-    var dx = this.get("x") - px,
+    let dx = this.get("x") - px,
       dy = this.get("y") - py;
-    return dx * dx + dy * dy; 
+    return dx * dx + dy * dy;
   }
 });
 
-var zones = Ember.A();
+let zones = Ember.A();
 
 for (let name in data.zones) {
   zones.pushObject(Zone.create({
@@ -42,7 +37,7 @@ for (let name in data.zones) {
   }));
 }
 
-var zonesSortedByDistance = zones.sortBy("x");
+let zonesSortedByDistance = zones.sortBy("x");
 
 export default zones;
 export { zonesSortedByDistance };
