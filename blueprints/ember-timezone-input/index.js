@@ -3,12 +3,9 @@ var RSVP = require('rsvp');
 module.exports = {
   description: 'Moves the image files into place',
 
-  // locals: function(options) {
-  //   // Return custom template variables here.
-  //   return {
-  //     foo: options.entity.options.foo
-  //   };
-  // }
+  normalizeEntityName: function() {
+
+  },
 
   afterInstall: function(options) {
     return RSVP.all([
